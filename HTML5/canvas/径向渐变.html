@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: solid 1px red;
+        }
+    </style>
+</head>
+<body>
+<canvas width="500" height="300"></canvas>
+</body>
+<script>
+  var canvas = document.querySelector("canvas");
+  var ctx = canvas.getContext("2d");
+  var cgd = ctx.createRadialGradient(200, 150, 50, 200, 150, 100);
+  cgd.addColorStop(0, "red");
+  cgd.addColorStop(.5, "yellow");
+  cgd.addColorStop(1, "blue");
+  ctx.fillStyle = cgd;
+  ctx.moveTo(100, 50);
+  ctx.lineTo(300, 50);
+  ctx.lineTo(300, 300);
+  ctx.lineTo(100, 300);
+  ctx.closePath();
+
+  ctx.fill();
+
+</script>
+</html>

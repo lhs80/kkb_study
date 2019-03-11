@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: solid 1px red;
+        }
+    </style>
+</head>
+<body>
+<canvas width="800" height="500"></canvas>
+</body>
+<script>
+  var canvas = document.querySelector("canvas");
+  var ctx = canvas.getContext("2d");
+  //创建渐变文案--起始位置横纵坐标，结束位置横纵坐票
+  var lgd = ctx.createLinearGradient(100, 100, 500, 100);
+  //起始位置颜色
+  lgd.addColorStop(0, "red");
+  //结束位置颜色
+  lgd.addColorStop(.5, "green");
+  lgd.addColorStop(1, "yellow");
+  //把渐变文案赋值给绘画对象
+  ctx.strokeStyle = lgd;
+  ctx.moveTo(100, 100);
+  ctx.lineTo(500, 100);
+  ctx.lineWidth = 20;
+
+  ctx.stroke();
+</script>
+</html>

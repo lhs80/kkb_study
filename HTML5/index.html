@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--[if lte IE 8]>
+    <script src="https://cdn.bootcss.com/html5shiv/r29/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<header>头部</header>
+<aside>
+    <input type="file" id="file">
+    <input type="file" id="file1">
+    <div id="div"></div>
+</aside>
+<footer>底部</footer>
+</body>
+<script>
+  //读取样式文件
+  var file = document.querySelector("#file");
+  file.onchange = function () {
+    var style = document.createElement("style");
+    var fl = this.files[0];
+    var fd = new FileReader();
+    fd.readAsText(fl);
+    fd.onload = function () {
+      var result = fd.result;
+      style.innerHTML = result;
+      document.querySelector("head").appendChild(style);
+    }
+  }
+  //读取图片
+  // var file = document.querySelector("#file");
+  // file.onchange = function () {
+  //   var img = document.createElement("img");
+  //   var readFile = this.files[0];
+  //   var reader = new FileReader();
+  //   reader.readAsDataURL(readFile);
+  //   reader.onload = function () {
+  //     var result = reader.result;
+  //     console.log(result)
+  //     img.src = result;
+  //     document.querySelector("#div").appendChild(img)
+  //   }
+  // };
+  //读取JS文件
+  var file1 = document.querySelector("#file1");
+  file1.onchange = function () {
+    // var script = document.createElement("script");
+    var fl = this.files[0];
+    var fd = new FileReader();
+    fd.readAsText(fl);
+    fd.onload = function () {
+      // var result = fd.result;
+      // script.innerHTML = result;
+      document.querySelector("#div").onclick = function () {
+        fd.result;
+      };
+      // document.querySelector("head").appendChild(script);
+    }
+  }
+</script>
+</html>

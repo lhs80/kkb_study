@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: solid 1px red;
+        }
+    </style>
+</head>
+<body>
+<canvas width="500" height="300"></canvas>
+</body>
+<script>
+  var canvas = document.querySelector("canvas");
+  var ctx = canvas.getContext("2d");
+  let x = 0, step = 5, i = 1;
+
+  ctx.fillStyle = "#abcdef";
+  setInterval(function () {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(x, 100, 200, 100);
+    ctx.stroke();
+    x += step * i;
+    if (x > canvas.width - 200) {
+      i = -1
+    } else if (x < 0) {
+      i = 1;
+    }
+  }, 50)
+
+</script>
+</html>

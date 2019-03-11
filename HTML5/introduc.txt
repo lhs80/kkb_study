@@ -1,0 +1,67 @@
+一、版本介绍
+    1.发布于2014-10-28；
+二、快捷创建方法
+    1、html:4t--松散版本；
+    2、html:4s--严格版本；
+    3、html:xt--xhtml过渡版本;
+    4、html:xs--xhtml严格版本；
+    5、！--html5；
+三、优点
+    1、语义化：
+    2、可移植性好；
+    3、可以跨平台；
+四、缺点
+    1、ie8及以下浏览器不支持；
+五、新增语义标签
+    1、header,footer,main,article,aside,section,details,figcaption,figure,mark,nav,summary,time;
+    2、html5shiv.js--使h5语义化标签兼容8;需要在文件中加入兼容性判断，ie中加载，
+    谷歌火狐中不加载；
+    3、使用cc:ie6可以快捷打出兼容标签，修改最后的版本数字即可；
+六、视频和音频（audio/video）
+    1、controls：可以在页面中显示音频控件；
+    2、autoplay：可以自动播放音频（谷歌不支持,需要加上指令muted，但是是静音方式）；
+    3、loop：循环播放；
+七、表单
+    1、autocomplete="off":关闭智能提示功能；
+    2、novalidate:关闭校验功能；
+八、API
+    1、document.querySelector("name"):只能获取一个元素；
+    2、document.querySelectorAll("name"):多个元素；
+    3、Dom.classList.add("name"):添加样式类名;
+    4、Dom.classList.remove("name"):移除样式名；
+    5、Dom.classList.toggle("name"):切换样式；
+    6、Dom.classList.contains("name"):是否包含样式；
+九、自定义属性
+    1、设置自定义属性：在标签中加入以data-开头的属性，如data-name,data-age,data-sex，全部小写字母。
+    2、获取自定义属性：document.querySelector("name").dataset,返回object;
+十、读取文件FileReader
+    1、事件
+       (1).onabort:中断时触发；
+       (2).onload:文件读取成功完成时触发；
+       (3).onerror:出错时触发；
+       (4).onloadend:读取完成时触发，无论成功或失败；
+       (5).onloadstart:开始读取时触发；
+       (6).onprogress:读取中；
+十一、网络状态检测
+    1、window.navigator.online
+        true:在线;
+        false:离线；
+    2、window.ononline=function(){}--联网就触发；
+    3、window.onoffline=function(){}--没网就立刻触发；
+十二、地理定位(兼容性差，移动端华为机不兼容)
+    1、window.navigator.geolocation.getCurrentPosition();
+十三、本地存储
+十四、canvas
+    (一):绘画步骤
+        1、要有画布；
+        2、创建绘图对象；
+        3、开始的位置；
+        4、结束的位置
+    (二):lineJoin--改变直线连接处样式
+        1、miter：尖角（默认）；
+        2、round：圆角；
+        3、bevel：平角；
+    (三):lineCap--设置直线起点处样式
+        同上；
+    (四):closePath--闭合路径
+十五、css3
