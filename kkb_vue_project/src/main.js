@@ -8,11 +8,11 @@ import interceptor from './interceptor'
 
 Vue.config.productionTip = false
 
-//执行拦截器的初始化
-interceptor()
-
-new Vue({
+const app = new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount('#app')
+
+//执行拦截器的初始化
+interceptor(app)

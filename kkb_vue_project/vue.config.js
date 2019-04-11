@@ -17,6 +17,12 @@ module.exports = {
   },
   configureWebpack: {
     devServer: {
+      // proxy: {
+      //   '/api': {
+      //     target: 'http://192.168.199.240',
+      //     changOrigin: true
+      //   }
+      // }
       before (app) {
         //模拟后台服务器express
         app.get('/api/login', function (req, res) {
@@ -44,7 +50,6 @@ module.exports = {
             res.sendStatus(401)
           }
         }
-
       }
     }
   }

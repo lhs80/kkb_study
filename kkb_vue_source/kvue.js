@@ -13,12 +13,13 @@ class KVue {
     // this.$data.foo.bar
     new Compile(options.el, this)
 
-    // created执行
+    // created执行,给created指定this作用域
     if (options.created) {
       options.created.call(this)
     }
   }
 
+  //数据观察者
   observe (value) {
     if (!value || typeof value !== 'object') {
       return
@@ -26,6 +27,7 @@ class KVue {
 
     //遍历该对象
     Object.keys(value).forEach(key => {
+      //defineReactive定义响应化
       this.defineReactive(value, key, value[key])
       //代理data中的属性到vue实例上
       this.proxyData(key)
@@ -36,11 +38,13 @@ class KVue {
     //递归调用，解决嵌套数据
     this.observe(val)
 
+    //新建一个依赖收集器Dep
     let dep = new Dep()
 
     Object.defineProperty(obj, key, {
       get () {
         Dep.target && dep.addDep(Dep.target)
+        console.log('Dep.target', Dep.target)
         return val
       },
       set (newVal) {
@@ -49,7 +53,6 @@ class KVue {
         }
         val = newVal
         dep.notify()
-        // console.log(`${key}属性更新了：${val}`)
       }
     })
   }
@@ -68,6 +71,8 @@ class KVue {
 }
 
 //Dep:用来管理Watcher
+//data中有几个属性，Dep中就有几个watcher
+//视图中有几个数据绑定，就有几个watcher
 class Dep {
   constructor () {
     //这里存放若干依赖(watcher)
@@ -78,26 +83,26 @@ class Dep {
     this.deps.push(dep)
   }
 
-  //通过所有watcher
+  //通知所有watcher
   notify () {
     this.deps.forEach(dep => dep.update())
   }
 }
 
-// Watcher
+// Watcher观察者，负责更新视图
 class Watcher {
   constructor (vm, key, cb) {
+    console.log('vm', vm)
     this.vm = vm
     this.key = key
     this.cb = cb
     //将当前watcher实例指定到dep静态属性target
     Dep.target = this
-    this.vm[this.key] //触发getter,添加依速
+    this.vm[this.key] //触发getter,添加依赖
     Dep.target = null
   }
 
   update () {
-    // console.log('update')
     this.cb.call(this.vm, this.vm[this.key])
   }
 }

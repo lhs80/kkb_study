@@ -1,4 +1,5 @@
-// new Compile(el,vm,)
+// 用法 new Compile(el,vm)
+// vm VUE实例
 class Compile {
   constructor (el, vm) {
     //要遍历的宿主节点
@@ -20,7 +21,7 @@ class Compile {
   //将宿主元素中代码片段拿出来遍历，这样做比较高效
   node2Fragment (el) {
     const frag = document.createDocumentFragment()
-    //将el中所有子元素搬家到frag中
+    //将el中所有子元素搬家到frag中,移动操作
     let child
     while (child = el.firstChild) {
       frag.appendChild(child)
@@ -54,7 +55,6 @@ class Compile {
         })
       } else if (this.isInterpolation(node)) {
         //插值文本
-        // console.log('编译文本' + node.textContent)
         this.compileText(node)
       }
 
@@ -128,7 +128,7 @@ class Compile {
   }
 
   htmlUpdater (node, value) {
-    console.log("value",value)
+    console.log('value', value)
     node.innerHTML = value
   }
 
